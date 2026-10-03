@@ -640,9 +640,8 @@ form.addEventListener("submit", async e => {
   btn.disabled = true; label.textContent = "送信中…";
   try {
     await fetch(FORM_ENDPOINT, { method: "POST", mode: "no-cors", body: new URLSearchParams(new FormData(form)) });
-    form.querySelectorAll(".f, .row2, .notice, .sum, .note, button").forEach(el => el.style.display = "none");
-    show("ご注文を受け付けました。ご入力のメールアドレスに確認メールをお送りします。PayPayでのお支払い方法は追ってご案内します。");
-    msg.scrollIntoView({ block: "center" });
+    try { sessionStorage.setItem("lastOrder", JSON.stringify({ name: form.name.value, qty: form.qty.value, total: document.getElementById("s-total").textContent })); } catch (_) {}
+    location.href = "thanks.html";
   } catch (_) {
     btn.disabled = false; label.textContent = "この内容で注文する";
     show("送信できませんでした。通信状況をご確認のうえ、もう一度お試しください。", true);
