@@ -127,6 +127,26 @@ td.num{text-align:right;font-family:var(--en);font-size:18px;white-space:nowrap}
 footer{padding:36px 0 110px;font-size:13px;color:var(--dim)}
 footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
 
+
+/* カウントダウン */
+.cd{margin-top:22px;max-width:520px;border:2px solid var(--red);background:rgba(0,0,0,.72);position:relative;padding:12px 14px 14px}
+.cd::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:repeating-linear-gradient(-45deg,var(--red) 0 8px,transparent 8px 16px)}
+.cd-label{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;font-family:var(--en);letter-spacing:.2em;font-size:11px;color:var(--red)}
+.cd-label b{font-family:var(--sans);letter-spacing:.05em;font-size:13px;color:var(--ink)}
+.cd-digits{display:flex;align-items:flex-end;gap:4px;font-family:var(--en);font-weight:700;color:var(--or);line-height:1;margin-top:8px;font-variant-numeric:tabular-nums}
+.cd-digits .n{font-size:clamp(40px,11vw,64px);text-shadow:0 0 18px rgba(255,106,0,.45)}
+.cd-digits .u{font-family:var(--sans);font-size:12px;color:var(--ink);margin:0 6px 6px 2px}
+.cd-digits .sep{font-size:clamp(32px,9vw,52px);color:var(--red);animation:blink 1s steps(2) infinite;margin-bottom:4px}
+.cd-deadline{font-size:12px;color:var(--dim);margin-top:8px}
+.cd.urgent{border-color:var(--red);animation:alarm 1s steps(2) infinite}
+.cd.urgent .n{color:var(--red);text-shadow:0 0 22px rgba(232,35,26,.7)}
+@keyframes alarm{50%{box-shadow:0 0 0 4px rgba(232,35,26,.35),0 0 40px rgba(232,35,26,.4)}}
+.final .cd{margin:28px auto 0;text-align:left}
+.cd.ended .cd-digits{font-family:var(--mincho);font-size:36px;color:var(--red)}
+.sticky .left{display:flex;flex-direction:column;line-height:1.2}
+.sticky .cd-mini{font-family:var(--en);font-size:12px;color:var(--red);letter-spacing:.08em;font-variant-numeric:tabular-nums}
+.cta.disabled{background:#333;color:#888;pointer-events:none}
+
 /* スマホ固定CTA */
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:9;background:rgba(10,10,10,.94);border-top:2px solid var(--or);padding:10px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between}
 .sticky b{font-family:var(--en);color:var(--or);font-size:22px}
@@ -146,7 +166,7 @@ footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
 <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#39ff6a" stroke-width=".4" opacity=".18"/></pattern>
 </defs></svg>
 <div class="tape"></div>
-<div class="ticker"><span>EMERGENCY SHIPMENT ／ 緊急出荷 ／ 江別・滝農園 味来 今季ラスト便 ／ 収穫は10月初旬で終了 ／ 正規品10本 4,000円 ／ EMERGENCY SHIPMENT ／ 緊急出荷</span></div>
+<div class="ticker"><span>EMERGENCY SHIPMENT ／ 緊急出荷 ／ 江別・滝農園 味来 今季ラスト便 ／ 販売は10月11日24時で終了 ／ 正規品10本 4,000円 ／ EMERGENCY SHIPMENT ／ 緊急出荷</span></div>
 
 <header class="hero">
   <div class="hero-img" role="img" aria-label="朝露のついたフルーツコーン味来"></div>
@@ -161,6 +181,11 @@ footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
     <div class="price-box">
       <div class="price">¥4,000<small>10本／税込・送料別</small></div>
     </div>
+    <div class="cd" data-cd>
+      <div class="cd-label"><span>TIME REMAINING</span><b>販売終了まで</b></div>
+      <div class="cd-digits"><span class="n" data-d>--</span><span class="u">日</span><span class="n" data-h>--</span><span class="sep">:</span><span class="n" data-m>--</span><span class="sep">:</span><span class="n" data-s>--</span></div>
+      <div class="cd-deadline">販売終了 2026年10月11日（日）24:00 ／ 以降のご注文は受け付けできません</div>
+    </div>
     <a class="cta" href="#order" data-order><span class="en">ORDER NOW</span>ラスト便10本を確保する</a>
   </div>
 </header>
@@ -174,7 +199,7 @@ footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
     <div class="status">
       <div><div class="k">VARIETY</div><div class="v">味来<small>みらい</small></div></div>
       <div><div class="k">ORIGIN</div><div class="v">江別市<br>滝農園<small>北海道</small></div></div>
-      <div><div class="k">HARVEST END</div><div class="v red">10月初旬</div></div>
+      <div><div class="k">SALE END</div><div class="v red">10月11日<small>24:00 販売終了</small></div></div>
       <div><div class="k">STOCK</div><div class="v red">なくなり<br>次第終了</div></div>
     </div>
   </div>
@@ -269,6 +294,7 @@ footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
       <tr><th>内容</th><td>フルーツコーン「味来」正規品 10本</td></tr>
       <tr><th>価格</th><td><strong>4,000円（税込）</strong>＋送料</td></tr>
       <tr><th>発送元</th><td>北海道札幌市</td></tr>
+      <tr><th>販売期間</th><td><strong>2026年10月11日（日）24:00まで</strong></td></tr>
       <tr><th>発送時期</th><td>収穫にあわせて順次発送（10月初旬の収穫終了まで）</td></tr>
       <tr><th>日時指定</th><td>できません</td></tr>
     </table>
@@ -299,6 +325,11 @@ footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
     <div class="card" style="margin-bottom:0"><div class="ep">FINAL EPISODE</div></div>
     <h2>今年の畑は、<br>もう戻らない。</h2>
     <p class="lead" style="margin:18px auto 0">次にこの味に会えるのは、来年の夏です。</p>
+    <div class="cd" data-cd>
+      <div class="cd-label"><span>TIME REMAINING</span><b>今季の販売終了まで</b></div>
+      <div class="cd-digits"><span class="n" data-d>--</span><span class="u">日</span><span class="n" data-h>--</span><span class="sep">:</span><span class="n" data-m>--</span><span class="sep">:</span><span class="n" data-s>--</span></div>
+      <div class="cd-deadline">販売終了 2026年10月11日（日）24:00 ／ 以降のご注文は受け付けできません</div>
+    </div>
     <a class="cta" href="#" data-order><span class="en">ORDER NOW</span>ラスト便を注文する</a>
   </div>
 </section>
@@ -315,12 +346,35 @@ footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
   </div>
 </footer>
 
-<div class="sticky"><b>¥4,000<small style="font-size:12px;color:#ccc;font-family:var(--sans)"> /10本</small></b><a href="#" data-order>注文する</a></div>
+<div class="sticky"><div class="left"><b>¥4,000<small style="font-size:12px;color:#ccc;font-family:var(--sans)"> /10本</small></b><span class="cd-mini" data-cd-mini>販売終了まで --</span></div><a href="#" data-order>注文する</a></div>
 
 <script>
 // 注文先URL：BASEで「全国発送・10本」の商品を作ったら、その商品ページURLに差し替える
 const ORDER_URL = "https://hokkainoken.official.ec/";
 document.querySelectorAll("[data-order]").forEach(a => { a.href = ORDER_URL; a.target = "_blank"; a.rel = "noopener"; });
+
+// 販売締切：2026年10月11日 24:00（日本時間）
+const DEADLINE = new Date("2026-10-12T00:00:00+09:00").getTime();
+const pad = n => String(n).padStart(2, "0");
+function tick() {
+  const left = DEADLINE - Date.now();
+  if (left <= 0) {
+    document.querySelectorAll("[data-cd]").forEach(el => { el.classList.add("ended"); el.querySelector(".cd-digits").textContent = "販売終了"; });
+    document.querySelectorAll("[data-cd-mini]").forEach(el => el.textContent = "販売終了");
+    document.querySelectorAll("[data-order]").forEach(a => { a.classList.add("disabled"); a.removeAttribute("href"); a.textContent = "今季の販売は終了しました"; });
+    return clearInterval(timer);
+  }
+  const d = Math.floor(left / 864e5), h = Math.floor(left / 36e5) % 24, m = Math.floor(left / 6e4) % 60, sec = Math.floor(left / 1e3) % 60;
+  document.querySelectorAll("[data-cd]").forEach(el => {
+    el.querySelector("[data-d]").textContent = d;
+    el.querySelector("[data-h]").textContent = pad(h);
+    el.querySelector("[data-m]").textContent = pad(m);
+    el.querySelector("[data-s]").textContent = pad(sec);
+    el.classList.toggle("urgent", left < 864e5);
+  });
+  document.querySelectorAll("[data-cd-mini]").forEach(el => el.textContent = `終了まで ${d}日 ${pad(h)}:${pad(m)}:${pad(sec)}`);
+}
+const timer = setInterval(tick, 1000); tick();
 
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }), { threshold: .12 });
 document.querySelectorAll(".reveal").forEach(el => io.observe(el));
