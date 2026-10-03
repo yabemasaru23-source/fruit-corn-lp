@@ -142,6 +142,7 @@ footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
 .seg{position:relative;font-size:clamp(28px,8.4vw,52px);text-shadow:0 0 6px var(--glow),0 0 22px var(--glow)}
 .seg::before{content:attr(data-ghost);position:absolute;left:0;top:0;color:var(--glow);opacity:.09;text-shadow:none}
 .seg.small{font-size:clamp(18px,5vw,30px);margin-left:4px}
+.dayu{font-family:var(--mincho);font-weight:800;font-size:clamp(22px,6vw,38px);color:var(--glow);text-shadow:0 0 10px var(--glow);margin:0 12px 2px 6px}
 .colon{font-size:clamp(22px,6.5vw,40px);margin:0 3px 2px;color:var(--glow);text-shadow:0 0 10px var(--glow);animation:blink 1s steps(2) infinite}
 .cd-units{display:flex;font-family:var(--en);font-size:9px;letter-spacing:.2em;color:#8a5a2a;margin-top:6px;gap:0}
 .cd-units span{flex:0 0 auto}
@@ -236,9 +237,9 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px 0 0}
       <div class="cd-side">販売限界まで</div>
       <div class="cd-main">
         <div class="cd-top"><span>ACTIVE TIME REMAINING</span><div class="cd-modes"><span data-mode="normal">NORMAL</span><span data-mode="urgent">URGENT</span><span data-mode="critical">CRITICAL</span></div></div>
-        <div class="cd-digits"><span class="seg" data-ghost="88" data-d>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-h>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-m>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-s>00</span><span class="seg small" data-ghost="88" data-c>00</span></div>
+        <div class="cd-digits"><span class="seg" data-ghost="8" data-d>0</span><span class="dayu">日</span><span class="seg" data-ghost="88" data-h>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-m>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-s>00</span><span class="seg small" data-ghost="88" data-c>00</span></div>
         <div class="cd-bar" data-bar><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="cd-foot"><span>DAY : HOUR : MIN : SEC</span><span>販売終了 <b>2026.10.11 24:00</b></span></div>
+        <div class="cd-foot"><span>残り　日 ／ 時間：分：秒</span><span>販売終了 <b>2026.10.11 24:00</b></span></div>
       </div>
     </div>
     <a class="cta" href="#form" data-order><span class="en">ORDER NOW</span>ラスト便10本を確保する</a>
@@ -442,9 +443,9 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px 0 0}
       <div class="cd-side">今季販売限界まで</div>
       <div class="cd-main">
         <div class="cd-top"><span>ACTIVE TIME REMAINING</span><div class="cd-modes"><span data-mode="normal">NORMAL</span><span data-mode="urgent">URGENT</span><span data-mode="critical">CRITICAL</span></div></div>
-        <div class="cd-digits"><span class="seg" data-ghost="88" data-d>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-h>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-m>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-s>00</span><span class="seg small" data-ghost="88" data-c>00</span></div>
+        <div class="cd-digits"><span class="seg" data-ghost="8" data-d>0</span><span class="dayu">日</span><span class="seg" data-ghost="88" data-h>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-m>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-s>00</span><span class="seg small" data-ghost="88" data-c>00</span></div>
         <div class="cd-bar" data-bar><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="cd-foot"><span>DAY : HOUR : MIN : SEC</span><span>販売終了 <b>2026.10.11 24:00</b></span></div>
+        <div class="cd-foot"><span>残り　日 ／ 時間：分：秒</span><span>販売終了 <b>2026.10.11 24:00</b></span></div>
       </div>
     </div>
     <a class="cta" href="#form" data-order><span class="en">ORDER NOW</span>ラスト便を注文する</a>
@@ -533,7 +534,7 @@ function tick() {
         sec = Math.floor(left / 1e3) % 60, cs = Math.floor(left / 10) % 100;
   const mode = left < 864e5 ? "critical" : left < 3 * 864e5 ? "urgent" : "normal";
   cds.forEach(el => {
-    el.querySelector("[data-d]").textContent = pad(d);
+    el.querySelector("[data-d]").textContent = d; el.querySelector("[data-d]").dataset.ghost = "8".repeat(String(d).length);
     el.querySelector("[data-h]").textContent = pad(h);
     el.querySelector("[data-m]").textContent = pad(m);
     el.querySelector("[data-s]").textContent = pad(sec);
@@ -543,7 +544,7 @@ function tick() {
     el.querySelectorAll("[data-mode]").forEach(b => b.classList.toggle("on", b.dataset.mode === mode));
     el.querySelectorAll("[data-bar] i").forEach((b, i) => b.classList.toggle("on", i < Math.ceil(left / 864e5)));
   });
-  document.querySelectorAll("[data-cd-mini]").forEach(el => el.innerHTML = `<small>販売限界まで</small>${pad(d)}:${pad(h)}:${pad(m)}:${pad(sec)}`);
+  document.querySelectorAll("[data-cd-mini]").forEach(el => el.innerHTML = `<small>販売限界まで</small>${d}<small style="margin:0 4px 0 2px;color:var(--or)">日</small>${pad(h)}:${pad(m)}:${pad(sec)}`);
 }
 (function loop() { tick(); if (!ended) requestAnimationFrame(loop); })();
 
