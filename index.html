@@ -128,25 +128,38 @@ footer{padding:36px 0 110px;font-size:13px;color:var(--dim)}
 footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
 
 
-/* カウントダウン */
-.cd{margin-top:22px;max-width:520px;border:2px solid var(--red);background:rgba(0,0,0,.72);position:relative;padding:12px 14px 14px}
-.cd::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:repeating-linear-gradient(-45deg,var(--red) 0 8px,transparent 8px 16px)}
-.cd-label{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;font-family:var(--en);letter-spacing:.2em;font-size:11px;color:var(--red)}
-.cd-label b{font-family:var(--sans);letter-spacing:.05em;font-size:13px;color:var(--ink)}
-.cd-digits{display:flex;align-items:flex-end;gap:4px;font-family:var(--en);font-weight:700;color:var(--or);line-height:1;margin-top:8px;font-variant-numeric:tabular-nums}
-.cd-digits .n{font-size:clamp(40px,11vw,64px);text-shadow:0 0 18px rgba(255,106,0,.45)}
-.cd-digits .u{font-family:var(--sans);font-size:12px;color:var(--ink);margin:0 6px 6px 2px}
-.cd-digits .sep{font-size:clamp(32px,9vw,52px);color:var(--red);animation:blink 1s steps(2) infinite;margin-bottom:4px}
-.cd-deadline{font-size:12px;color:var(--dim);margin-top:8px}
-.cd.urgent{border-color:var(--red);animation:alarm 1s steps(2) infinite}
-.cd.urgent .n{color:var(--red);text-shadow:0 0 22px rgba(232,35,26,.7)}
-@keyframes alarm{50%{box-shadow:0 0 0 4px rgba(232,35,26,.35),0 0 40px rgba(232,35,26,.4)}}
+/* カウントダウン（活動限界タイマー風） */
+@font-face{font-family:"DSEG7";src:url(https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-BoldItalic.woff2) format("woff2");font-display:swap}
+.cd{--glow:var(--or);margin-top:22px;max-width:560px;background:#050302;border:1px solid #3a1d00;position:relative;display:grid;grid-template-columns:34px 1fr;box-shadow:inset 0 0 40px rgba(255,106,0,.08)}
+.cd::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.35) 0 1px,transparent 1px 3px);pointer-events:none}
+.cd-side{background:var(--glow);color:#050302;writing-mode:vertical-rl;font-family:var(--mincho);font-weight:800;font-size:15px;letter-spacing:.3em;display:flex;align-items:center;justify-content:center;padding:10px 0}
+.cd-main{padding:12px 14px 12px;min-width:0}
+.cd-top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-family:var(--en);font-size:10px;letter-spacing:.25em;color:var(--glow)}
+.cd-modes{display:flex;gap:4px}
+.cd-modes span{border:1px solid #4a2600;color:#5a3300;padding:1px 6px;font-size:9px;letter-spacing:.12em}
+.cd-modes span.on{background:var(--glow);border-color:var(--glow);color:#050302;box-shadow:0 0 10px var(--glow)}
+.cd-digits{display:flex;align-items:flex-end;margin-top:10px;font-family:"DSEG7",var(--en);color:var(--glow);line-height:1;white-space:nowrap}
+.seg{position:relative;font-size:clamp(28px,8.4vw,52px);text-shadow:0 0 6px var(--glow),0 0 22px var(--glow)}
+.seg::before{content:attr(data-ghost);position:absolute;left:0;top:0;color:var(--glow);opacity:.09;text-shadow:none}
+.seg.small{font-size:clamp(18px,5vw,30px);margin-left:4px}
+.colon{font-size:clamp(22px,6.5vw,40px);margin:0 3px 2px;color:var(--glow);text-shadow:0 0 10px var(--glow);animation:blink 1s steps(2) infinite}
+.cd-units{display:flex;font-family:var(--en);font-size:9px;letter-spacing:.2em;color:#8a5a2a;margin-top:6px;gap:0}
+.cd-units span{flex:0 0 auto}
+.cd-bar{display:grid;grid-template-columns:repeat(9,1fr);gap:3px;margin-top:12px}
+.cd-bar i{height:8px;background:#2a1600}
+.cd-bar i.on{background:var(--glow);box-shadow:0 0 8px var(--glow)}
+.cd-foot{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:11px;color:#8a7a6a;margin-top:8px}
+.cd-foot b{color:var(--glow);font-family:var(--en);letter-spacing:.15em;font-weight:500}
+.cd.urgent{--glow:#ffb000}
+.cd.critical{--glow:var(--red);animation:alarm 1s steps(2) infinite;border-color:var(--red)}
+.cd.critical .cd-side{animation:blink .5s steps(2) infinite}
+@keyframes alarm{50%{box-shadow:0 0 0 3px rgba(232,35,26,.35),0 0 40px rgba(232,35,26,.45)}}
 .final .cd{margin:28px auto 0;text-align:left}
-.cd.ended .cd-digits{font-family:var(--mincho);font-size:36px;color:var(--red)}
+.cd.ended .cd-digits{font-family:var(--mincho);font-size:40px}
 .sticky .left{display:flex;flex-direction:column;line-height:1.2}
-.sticky .cd-mini{font-family:var(--en);font-size:12px;color:var(--red);letter-spacing:.08em;font-variant-numeric:tabular-nums}
+.sticky .cd-mini{font-family:"DSEG7",var(--en);font-size:12px;color:var(--or);text-shadow:0 0 6px var(--or);white-space:nowrap}
+.sticky .cd-mini small{font-family:var(--sans);font-size:10px;color:#ccc;text-shadow:none;margin-right:4px}
 .cta.disabled{background:#333;color:#888;pointer-events:none}
-
 /* スマホ固定CTA */
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:9;background:rgba(10,10,10,.94);border-top:2px solid var(--or);padding:10px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between}
 .sticky b{font-family:var(--en);color:var(--or);font-size:22px}
@@ -182,9 +195,13 @@ footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
       <div class="price">¥4,000<small>10本／税込・送料別</small></div>
     </div>
     <div class="cd" data-cd>
-      <div class="cd-label"><span>TIME REMAINING</span><b>販売終了まで</b></div>
-      <div class="cd-digits"><span class="n" data-d>--</span><span class="u">日</span><span class="n" data-h>--</span><span class="sep">:</span><span class="n" data-m>--</span><span class="sep">:</span><span class="n" data-s>--</span></div>
-      <div class="cd-deadline">販売終了 2026年10月11日（日）24:00 ／ 以降のご注文は受け付けできません</div>
+      <div class="cd-side">販売限界まで</div>
+      <div class="cd-main">
+        <div class="cd-top"><span>ACTIVE TIME REMAINING</span><div class="cd-modes"><span data-mode="normal">NORMAL</span><span data-mode="urgent">URGENT</span><span data-mode="critical">CRITICAL</span></div></div>
+        <div class="cd-digits"><span class="seg" data-ghost="88" data-d>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-h>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-m>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-s>00</span><span class="seg small" data-ghost="88" data-c>00</span></div>
+        <div class="cd-bar" data-bar><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="cd-foot"><span>DAY : HOUR : MIN : SEC</span><span>販売終了 <b>2026.10.11 24:00</b></span></div>
+      </div>
     </div>
     <a class="cta" href="#order" data-order><span class="en">ORDER NOW</span>ラスト便10本を確保する</a>
   </div>
@@ -326,9 +343,13 @@ footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
     <h2>今年の畑は、<br>もう戻らない。</h2>
     <p class="lead" style="margin:18px auto 0">次にこの味に会えるのは、来年の夏です。</p>
     <div class="cd" data-cd>
-      <div class="cd-label"><span>TIME REMAINING</span><b>今季の販売終了まで</b></div>
-      <div class="cd-digits"><span class="n" data-d>--</span><span class="u">日</span><span class="n" data-h>--</span><span class="sep">:</span><span class="n" data-m>--</span><span class="sep">:</span><span class="n" data-s>--</span></div>
-      <div class="cd-deadline">販売終了 2026年10月11日（日）24:00 ／ 以降のご注文は受け付けできません</div>
+      <div class="cd-side">今季販売限界まで</div>
+      <div class="cd-main">
+        <div class="cd-top"><span>ACTIVE TIME REMAINING</span><div class="cd-modes"><span data-mode="normal">NORMAL</span><span data-mode="urgent">URGENT</span><span data-mode="critical">CRITICAL</span></div></div>
+        <div class="cd-digits"><span class="seg" data-ghost="88" data-d>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-h>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-m>00</span><span class="colon">:</span><span class="seg" data-ghost="88" data-s>00</span><span class="seg small" data-ghost="88" data-c>00</span></div>
+        <div class="cd-bar" data-bar><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="cd-foot"><span>DAY : HOUR : MIN : SEC</span><span>販売終了 <b>2026.10.11 24:00</b></span></div>
+      </div>
     </div>
     <a class="cta" href="#" data-order><span class="en">ORDER NOW</span>ラスト便を注文する</a>
   </div>
@@ -346,7 +367,7 @@ footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
   </div>
 </footer>
 
-<div class="sticky"><div class="left"><b>¥4,000<small style="font-size:12px;color:#ccc;font-family:var(--sans)"> /10本</small></b><span class="cd-mini" data-cd-mini>販売終了まで --</span></div><a href="#" data-order>注文する</a></div>
+<div class="sticky"><div class="left"><b>¥4,000<small style="font-size:12px;color:#ccc;font-family:var(--sans)"> /10本</small></b><span class="cd-mini" data-cd-mini>--</span></div><a href="#" data-order>注文する</a></div>
 
 <script>
 // 注文先URL：BASEで「全国発送・10本」の商品を作ったら、その商品ページURLに差し替える
@@ -356,25 +377,35 @@ document.querySelectorAll("[data-order]").forEach(a => { a.href = ORDER_URL; a.t
 // 販売締切：2026年10月11日 24:00（日本時間）
 const DEADLINE = new Date("2026-10-12T00:00:00+09:00").getTime();
 const pad = n => String(n).padStart(2, "0");
+const cds = [...document.querySelectorAll("[data-cd]")];
+let ended = false;
 function tick() {
+  if (ended) return;
   const left = DEADLINE - Date.now();
   if (left <= 0) {
-    document.querySelectorAll("[data-cd]").forEach(el => { el.classList.add("ended"); el.querySelector(".cd-digits").textContent = "販売終了"; });
+    ended = true;
+    cds.forEach(el => { el.classList.add("ended", "critical"); el.querySelector(".cd-digits").textContent = "販売終了"; });
     document.querySelectorAll("[data-cd-mini]").forEach(el => el.textContent = "販売終了");
     document.querySelectorAll("[data-order]").forEach(a => { a.classList.add("disabled"); a.removeAttribute("href"); a.textContent = "今季の販売は終了しました"; });
-    return clearInterval(timer);
+    return;
   }
-  const d = Math.floor(left / 864e5), h = Math.floor(left / 36e5) % 24, m = Math.floor(left / 6e4) % 60, sec = Math.floor(left / 1e3) % 60;
-  document.querySelectorAll("[data-cd]").forEach(el => {
-    el.querySelector("[data-d]").textContent = d;
+  const d = Math.floor(left / 864e5), h = Math.floor(left / 36e5) % 24, m = Math.floor(left / 6e4) % 60,
+        sec = Math.floor(left / 1e3) % 60, cs = Math.floor(left / 10) % 100;
+  const mode = left < 864e5 ? "critical" : left < 3 * 864e5 ? "urgent" : "normal";
+  cds.forEach(el => {
+    el.querySelector("[data-d]").textContent = pad(d);
     el.querySelector("[data-h]").textContent = pad(h);
     el.querySelector("[data-m]").textContent = pad(m);
     el.querySelector("[data-s]").textContent = pad(sec);
-    el.classList.toggle("urgent", left < 864e5);
+    el.querySelector("[data-c]").textContent = pad(cs);
+    el.classList.toggle("urgent", mode === "urgent");
+    el.classList.toggle("critical", mode === "critical");
+    el.querySelectorAll("[data-mode]").forEach(b => b.classList.toggle("on", b.dataset.mode === mode));
+    el.querySelectorAll("[data-bar] i").forEach((b, i) => b.classList.toggle("on", i < Math.ceil(left / 864e5)));
   });
-  document.querySelectorAll("[data-cd-mini]").forEach(el => el.textContent = `終了まで ${d}日 ${pad(h)}:${pad(m)}:${pad(sec)}`);
+  document.querySelectorAll("[data-cd-mini]").forEach(el => el.innerHTML = `<small>販売限界まで</small>${pad(d)}:${pad(h)}:${pad(m)}:${pad(sec)}`);
 }
-const timer = setInterval(tick, 1000); tick();
+(function loop() { tick(); if (!ended) requestAnimationFrame(loop); })();
 
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }), { threshold: .12 });
 document.querySelectorAll(".reveal").forEach(el => io.observe(el));
