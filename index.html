@@ -129,10 +129,8 @@ td.num{text-align:right;font-family:var(--en);font-size:18px;white-space:nowrap}
 
 footer{padding:36px 0 110px;font-size:13px;color:var(--dim)}
 footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
-footer .law{grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
-footer .law dt{color:var(--ink);font-weight:700;padding-top:10px}
-footer .law dd{padding-bottom:10px;border-bottom:1px solid var(--line)}
-@media(min-width:640px){footer .law{grid-template-columns:13em 1fr}footer .law dt,footer .law dd{padding:10px 0;border-bottom:1px solid var(--line)}}
+footer .legal-links a{display:inline-block;color:var(--ink);border:1px solid #3a3a3a;padding:10px 18px;text-decoration:none;font-size:14px}
+footer .legal-links a:hover{border-color:var(--or);color:var(--or)}
 
 
 /* カウントダウン（活動限界タイマー風） */
@@ -566,7 +564,7 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px 0 0}
         <div><span>送料</span><span id="s-ship">都道府県を選ぶと表示</span></div>
         <div class="total"><span>合計（税込）</span><span id="s-total">—</span></div>
       </div>
-      <p class="note" style="margin:0">不味ければ商品代4,000円を返金します（商品の返送が必要・返送料はお客様負担・お届け時の送料は返金不可）。ご入力いただいた情報は、商品の発送とご連絡にのみ使用します。</p>
+      <p class="note" style="margin:0">不味ければ商品代4,000円を返金します（商品の返送が必要・返送料はお客様負担・お届け時の送料は返金不可・詳しくは<a href="tokushoho.html" style="color:var(--or)">特定商取引法に基づく表記</a>）。ご入力いただいた情報は、商品の発送とご連絡にのみ使用します。</p>
       <button type="submit" class="cta" data-order-submit><span class="en">SEND ORDER</span><span>この内容で注文する</span></button>
       <div class="form-msg" id="formMsg" role="status"></div>
     </form>
@@ -595,24 +593,10 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px 0 0}
 
 <footer>
   <div class="wrap">
-    <h2 id="tokushoho" style="font-family:var(--mincho);font-size:20px;color:var(--ink);margin-bottom:12px">特定商取引法に基づく表記</h2>
-    <dl class="law">
-      <dt>販売事業者</dt><dd>滝農園</dd>
-      <dt>運営責任者</dt><dd>瀧 大洲</dd>
-      <dt>所在地</dt><dd>北海道江別市篠津425</dd>
-      <dt>電話番号</dt><dd>ご請求があれば遅滞なく開示いたします</dd>
-      <dt>メールアドレス</dt><dd><a href="mailto:info@takifarm.net" style="color:var(--or)">info@takifarm.net</a></dd>
-      <dt>販売価格</dt><dd>フルーツコーン「味来」正規品（1本300g以上・皮付き）10本入り 4,000円（税込）</dd>
-      <dt>商品代金以外の必要料金</dt><dd>送料（ヤマト運輸クール便80サイズ・1箱ごと、地域別に1,023円〜3,278円・税込）</dd>
-      <dt>お支払い方法</dt><dd>PayPay</dd>
-      <dt>お支払い時期</dt><dd>ご注文後にメールでお送りするご案内に従い、お支払いください</dd>
-      <dt>商品の引渡時期</dt><dd>お支払い確認後、収穫にあわせて順次発送します（日時・時間帯の指定不可）</dd>
-      <dt>申込みの期限</dt><dd>2026年10月11日（日）24:00まで</dd>
-      <dt>返品・返金</dt><dd>生鮮品のため、お客様のご都合による返品はお受けできません。食べて美味しくなかった場合は、到着から3日以内に info@takifarm.net へ、不味かった理由と改善案を添えてメールでご連絡ください。商品をご返送いただき（返送料はお客様負担・着払い不可）、到着を確認後、商品代4,000円をPayPayで返金します。お届け時の送料は返金できません。配送中の破損や傷みがあった場合は、到着から3日以内にご連絡ください。</dd>
-    </dl>
-    <h2 id="contact" style="font-family:var(--mincho);font-size:20px;color:var(--ink);margin:32px 0 10px">お問い合わせ</h2>
+    <h2 id="contact" style="font-family:var(--mincho);font-size:20px;color:var(--ink);margin:0 0 10px">お問い合わせ</h2>
     <p>メール：<a href="mailto:info@takifarm.net" style="color:var(--or)">info@takifarm.net</a></p>
     <p style="margin-top:6px">＊当店以外でご購入された商品に関するお問い合わせは承っておりません。</p>
+    <p class="legal-links" style="margin-top:22px"><a href="tokushoho.html">特定商取引法に基づく表記 →</a></p>
     <p style="margin-top:18px">写真提供：北海農研</p>
   </div>
 </footer>
