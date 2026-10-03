@@ -215,6 +215,23 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px 0 0}
 .warn .evolve em{font-style:normal;color:var(--or)}
 @media (prefers-reduced-motion:reduce){.warn{animation:none}}
 
+
+/* シズル写真＋道産子コピー */
+.hungry{display:grid;gap:28px;align-items:center;margin-bottom:56px}
+@media(min-width:760px){.hungry{grid-template-columns:1.1fr 1fr}}
+.hungry figure{position:relative;margin:0;border:2px solid var(--or);box-shadow:0 0 60px rgba(255,170,0,.35)}
+.hungry figure img{width:100%;aspect-ratio:1;object-fit:cover}
+.hungry figure::after{content:"MACRO ／ KERNEL";position:absolute;top:10px;left:10px;font-family:var(--en);font-size:10px;letter-spacing:.3em;color:#0a0a0a;background:var(--or);padding:2px 8px}
+.hungry .ep{font-family:var(--en);color:var(--or);letter-spacing:.3em;font-size:13px}
+.hungry h3{font-family:var(--mincho);font-weight:800;font-size:clamp(30px,7vw,52px);line-height:1.2;margin:8px 0 12px}
+.hungry h3 em{font-style:normal;color:#ffc400;text-shadow:0 0 24px rgba(255,196,0,.5)}
+.hungry p{font-size:16px;color:#e6e1d6}
+.dosanko{text-align:center;margin:0 0 40px;font-family:var(--mincho);font-weight:800;line-height:1.25}
+.dosanko .d1{display:block;font-size:clamp(26px,6.4vw,48px)}
+.dosanko .d2{display:block;font-size:clamp(46px,12vw,104px);color:var(--or);margin:12px 0;text-shadow:0 0 30px rgba(255,106,0,.45)}
+.dosanko .d3{display:block;font-size:clamp(22px,5.4vw,40px)}
+.dosanko .d3 em{font-style:normal;color:var(--red)}
+
 /* 写真バンド */
 .band{position:relative;height:clamp(300px,62vw,560px);overflow:hidden;border-top:2px solid var(--or);border-bottom:2px solid var(--or);margin:0}
 .band img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.05)}
@@ -415,7 +432,19 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px 0 0}
 
 <section id="guarantee">
   <div class="wrap reveal">
-    <div class="card"><div class="ep">EPISODE 07 ／ GUARANTEE</div><h2>とにかく一回<br><em>食べてくれ</em></h2></div>
+    <div class="hungry">
+      <figure><img src="img/kernel-macro.jpg" alt="朝露をまとってはじけそうな味来の粒" loading="lazy" width="540" height="540"></figure>
+      <div>
+        <div class="ep">EPISODE 07 ／ GUARANTEE</div>
+        <h3>かじった瞬間<br><em>果汁がはじける</em></h3>
+        <p>朝露をまとったまま、張りつめた粒。前歯を立てた途端に甘い汁があふれ出す。茹でても焼いてもいない、畑から来たままの甘さです。</p>
+      </div>
+    </div>
+    <p class="dosanko">
+      <span class="d1">なまら自信あるからできるべさ！</span>
+      <span class="d2">とにかく一回、<br>食ってみれ！</span>
+      <span class="d3">もし<em>「美味くない」</em>って言うんなら、<br>商品代は全額返すわ！</span>
+    </p>
     <div class="warn">
       <div class="tape-r"></div>
       <div class="wbar"><span class="tri">▲</span>WARNING<span class="tri">▲</span></div>
