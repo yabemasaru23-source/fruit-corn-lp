@@ -126,6 +126,10 @@ td.num{text-align:right;font-family:var(--en);font-size:18px;white-space:nowrap}
 
 footer{padding:36px 0 110px;font-size:13px;color:var(--dim)}
 footer dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px}
+footer .law{grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
+footer .law dt{color:var(--ink);font-weight:700;padding-top:10px}
+footer .law dd{padding-bottom:10px;border-bottom:1px solid var(--line)}
+@media(min-width:640px){footer .law{grid-template-columns:13em 1fr}footer .law dt,footer .law dd{padding:10px 0;border-bottom:1px solid var(--line)}}
 
 
 /* カウントダウン（活動限界タイマー風） */
@@ -305,11 +309,11 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px 0 0}
     <div class="card"><div class="ep">EPISODE 04 ／ PILOT</div><h2>130年の畑、<br><em>5代目。</em></h2></div>
     <div class="farmer">
       <figure>
-        <img src="img/farmer.jpg" alt="トウモロコシ畑に立つ滝農園の滝一芳さん" loading="lazy" width="1200" height="1116">
+        <img src="img/farmer.jpg" alt="トウモロコシ畑に立つ滝農園の生産者" loading="lazy" width="1200" height="1116">
         <figcaption>滝農園（北海道江別市篠津）</figcaption>
       </figure>
       <div>
-        <p class="lead">札幌のとなり町、江別市篠津。家族で130年続く滝農園を継ぐのは、5代目の滝大洲さん。父・一芳さんとともに、1本の茎から1番キビだけを採るトウモロコシづくりを続けています。</p>
+        <p class="lead">札幌のとなり町、江別市篠津。家族で130年続く滝農園を継ぐのは、5代目の瀧大洲さん。父・瀧一芳さんとともに、1本の茎から1番キビだけを採るトウモロコシづくりを続けています。</p>
         <p class="lead" style="margin-top:14px">収穫は夜明けから。日中に茎へ蓄えた栄養は、夜のあいだに実へ移ります。だから一番甘いのは早朝。1時間で約2,500本を手でもぎ取ります。あふれる白い蜜から付いた名は「しろみつとろきび」。</p>
         <p class="lead" style="margin-top:14px">1年のうち約2か月しか味わえないこの甘さを、畑が終わる前に1人でも多くの方へ。それがこの緊急出荷の目的です。</p>
       </div>
@@ -456,18 +460,27 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px 0 0}
 
 <footer>
   <div class="wrap">
-    <dl>
-      <dt>生産</dt><dd>滝農園（北海道江別市）</dd>
-      <dt>販売</dt><dd>北海農研</dd>
-      <dt>写真</dt><dd>北海農研</dd>
+    <h2 id="tokushoho" style="font-family:var(--mincho);font-size:20px;color:var(--ink);margin-bottom:12px">特定商取引法に基づく表記</h2>
+    <dl class="law">
+      <dt>販売事業者</dt><dd>滝農園</dd>
+      <dt>運営責任者</dt><dd>瀧 大洲</dd>
+      <dt>所在地</dt><dd>北海道江別市篠津425</dd>
+      <dt>電話番号</dt><dd>080-4040-5460</dd>
+      <dt>販売価格</dt><dd>フルーツコーン「味来」正規品 10本入り 4,000円（税込）</dd>
+      <dt>商品代金以外の必要料金</dt><dd>送料（ヤマト運輸クール便80サイズ・1箱ごと、地域別に1,023円〜3,278円・税込）</dd>
+      <dt>お支払い方法</dt><dd>PayPay</dd>
+      <dt>お支払い時期</dt><dd>ご注文後にメールでお送りするご案内に従い、お支払いください</dd>
+      <dt>商品の引渡時期</dt><dd>お支払い確認後、収穫にあわせて順次発送します（日時・時間帯の指定不可）</dd>
+      <dt>申込みの期限</dt><dd>2026年10月11日（日）24:00まで</dd>
+      <dt>返品・返金</dt><dd>生鮮品のため、お客様のご都合による返品はお受けできません。食べて美味しくなかった場合は、到着から3日以内にご注文確認メールへご返信いただければ、商品代を全額返金します（送料はお客様負担・商品の返送は不要）。配送中の破損や傷みがあった場合も、到着から3日以内にご連絡ください。</dd>
     </dl>
+    <p style="margin-top:18px">写真提供：北海農研</p>
   </div>
 </footer>
 
 <div class="sticky"><div class="left"><b>¥4,000<small style="font-size:12px;color:#ccc;font-family:var(--sans)"> /10本</small></b><span class="cd-mini" data-cd-mini>--</span></div><a href="#form" data-order>注文する</a></div>
 
 <script>
-// 注文先URL：BASEで「全国発送・10本」の商品を作ったら、その商品ページURLに差し替える
 // 注文の送信先：Apps Script をウェブアプリとして公開したURLを入れる
 const FORM_ENDPOINT = "";
 const PRICE = 4000;
