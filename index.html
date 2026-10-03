@@ -26,7 +26,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bk);color:var(--ink);font-family:var(--sans);line-height:1.8;font-size:16px;overflow-x:hidden}
+body{background:var(--bk);color:var(--ink);font-family:var(--sans);line-height:2;font-size:16px;letter-spacing:.03em;overflow-x:hidden}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 .wrap{max-width:960px;margin:0 auto;padding:0 16px}
@@ -59,12 +59,15 @@ a{color:inherit}
 .cta .en{display:block;font-family:var(--en);font-size:12px;letter-spacing:.3em}
 
 /* セクション共通：タイトルカード */
-section{padding:72px 0;border-bottom:1px solid var(--line)}
-.card{margin-bottom:34px}
+section{padding:110px 0;border-bottom:1px solid var(--line)}
+@media(max-width:640px){section{padding:80px 0}}
+.card{margin-bottom:52px}
 .card .ep{font-family:var(--en);color:var(--or);letter-spacing:.3em;font-size:13px}
 .card h2{font-family:var(--mincho);font-weight:800;font-size:clamp(34px,8vw,60px);line-height:1.15;margin-top:6px}
 .card h2 em{font-style:normal;color:var(--or)}
-.lead{font-size:17px;max-width:40em}
+.lead{font-size:17px;line-height:2.15;max-width:36em}
+.lead + .lead{margin-top:1.4em}
+p + p{margin-top:1em}
 
 /* 状況報告パネル */
 .status{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--or);border:2px solid var(--or);margin-top:28px}
@@ -77,13 +80,13 @@ section{padding:72px 0;border-bottom:1px solid var(--line)}
 .status .v.red{color:var(--red)}
 
 /* 希少性 */
-.wake{display:grid;gap:24px;grid-template-columns:1fr}
+.wake{display:grid;gap:32px;grid-template-columns:1fr}
 @media(min-width:760px){.wake{grid-template-columns:1fr 1fr}}
-.box{border:1px solid var(--line);border-left:4px solid var(--or);padding:20px;background:#111}
-.box h3{font-family:var(--mincho);font-size:22px;margin-bottom:8px}
+.box{border:1px solid var(--line);border-left:4px solid var(--or);padding:28px 26px;background:#111}
+.box h3{font-family:var(--mincho);font-size:22px;margin-bottom:16px;line-height:1.5}
 .box.pu{border-left-color:var(--pu)}
 .box ul{list-style:none}
-.box li{padding-left:1.2em;position:relative;margin:4px 0}
+.box li{padding-left:1.2em;position:relative;margin:12px 0;line-height:1.9}
 .box li::before{content:"■";position:absolute;left:0;color:var(--or);font-size:.7em;top:.35em}
 .box.pu li::before{color:#a36bd6}
 
@@ -94,9 +97,9 @@ section{padding:72px 0;border-bottom:1px solid var(--line)}
 .farmer figcaption{font-size:12px;color:var(--dim);margin-top:6px}
 
 /* 作戦（食べ方） */
-.ops{display:grid;gap:14px;counter-reset:op}
+.ops{display:grid;gap:24px;counter-reset:op}
 @media(min-width:760px){.ops{grid-template-columns:1fr 1fr}}
-.op{border:1px solid var(--line);padding:22px 20px 20px;position:relative;background:linear-gradient(135deg,#141414,#0d0d0d)}
+.op{border:1px solid var(--line);padding:28px 24px 26px;position:relative;background:linear-gradient(135deg,#141414,#0d0d0d)}
 .op::before{counter-increment:op;content:"OPERATION 0" counter(op);font-family:var(--en);font-size:12px;letter-spacing:.25em;color:var(--gr)}
 .fig{position:relative;margin:12px -4px 14px;border:1px solid #1f5a2c;background:#050b06;overflow:hidden}
 .fig svg{display:block;width:100%;height:auto}
@@ -110,15 +113,15 @@ section{padding:72px 0;border-bottom:1px solid var(--line)}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.5}}
 @media (prefers-reduced-motion:reduce){.fig *{animation:none!important}}
 .op h3{font-family:var(--mincho);font-size:26px;margin:4px 0 8px}
-.op p{font-size:15px;color:#d6d3cc}
+.op p{font-size:15px;line-height:2;color:#d6d3cc}
 .op .lv{position:absolute;top:18px;right:18px;font-family:var(--en);font-size:11px;color:var(--dim);letter-spacing:.15em}
 
 /* 送料表 */
 table{width:100%;border-collapse:collapse;margin-top:12px;font-size:15px}
-th,td{border:1px solid var(--line);padding:10px 12px;text-align:left}
+th,td{border:1px solid var(--line);padding:14px 16px;text-align:left;line-height:1.9}
 th{background:#151515;font-weight:700;color:var(--or);font-size:13px;letter-spacing:.1em}
 td.num{text-align:right;font-family:var(--en);font-size:18px;white-space:nowrap}
-.note{font-size:13px;color:var(--dim);margin-top:10px}
+.note{font-size:13px;color:var(--dim);margin-top:16px;line-height:1.9}
 
 .final{text-align:center;background:radial-gradient(ellipse at center,#2a0f45 0%,var(--bk) 70%)}
 .final .cta{margin:26px auto 0}
@@ -171,7 +174,7 @@ footer .law dd{padding-bottom:10px;border-bottom:1px solid var(--line)}
 .badge-g b{font-family:var(--en);letter-spacing:.15em;font-size:11px;background:var(--gr);color:var(--bk);padding:1px 6px}
 
 /* 注文フォーム */
-.form{display:grid;gap:18px;margin-top:8px}
+.form{display:grid;gap:26px;margin-top:8px}
 .f label{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
 .f label .req{display:inline-block;background:var(--red);color:#fff;font-size:11px;padding:1px 6px;margin-left:8px;vertical-align:2px}
 .f label .opt{display:inline-block;border:1px solid var(--dim);color:var(--dim);font-size:11px;padding:0 6px;margin-left:8px;vertical-align:2px}
@@ -207,10 +210,10 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px 0 0}
 .warn h3 em{font-style:normal;color:var(--red);text-shadow:0 0 22px rgba(232,35,26,.9)}
 .warn .big{font-size:16px;font-weight:700;color:#ffd9d6;margin:0 16px}
 .protocol{list-style:none;counter-reset:pr;text-align:left;max-width:600px;margin:22px auto 0;padding:0 16px}
-.protocol li{counter-increment:pr;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;border:1px solid #5a1410;background:rgba(0,0,0,.55);padding:12px 14px;margin-top:8px;font-size:15px}
+.protocol li{counter-increment:pr;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;border:1px solid #5a1410;background:rgba(0,0,0,.55);padding:16px 18px;margin-top:12px;font-size:15px;line-height:1.8}
 .protocol li::before{content:"0" counter(pr);font-family:var(--en);font-weight:700;color:#0a0000;background:var(--red);padding:2px 8px;font-size:14px;letter-spacing:.1em}
 .protocol li b{color:#fff}
-.protocol li small{display:block;color:#c9a5a2;font-size:12px;margin-top:2px}
+.protocol li small{display:block;color:#c9a5a2;font-size:12.5px;margin-top:6px;line-height:1.8}
 .warn .evolve{margin:22px 16px 0;font-family:var(--mincho);font-size:clamp(20px,5vw,28px);line-height:1.6;color:#fff}
 .warn .evolve em{font-style:normal;color:var(--or)}
 @media (prefers-reduced-motion:reduce){.warn{animation:none}}
@@ -231,6 +234,28 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px 0 0}
 .dosanko .d2{display:block;font-size:clamp(46px,12vw,104px);color:var(--or);margin:12px 0;text-shadow:0 0 30px rgba(255,106,0,.45)}
 .dosanko .d3{display:block;font-size:clamp(22px,5.4vw,40px)}
 .dosanko .d3 em{font-style:normal;color:var(--red)}
+
+
+/* テレビ（ON AIR）*/
+#media{background:radial-gradient(ellipse at 50% 30%,#2a0808 0%,var(--bk) 65%)}
+.tv{position:relative;border:3px solid #2e2e2e;border-radius:18px;background:#050505;padding:0 0 30px;box-shadow:0 0 0 6px #141414,0 0 70px rgba(232,35,26,.25),inset 0 0 80px rgba(255,255,255,.04);overflow:hidden}
+.tv::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px);pointer-events:none}
+.tv-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 22px;border-bottom:1px solid #222;font-family:var(--en);letter-spacing:.2em;font-size:12px;color:var(--dim)}
+.onair{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-weight:700;font-size:15px;letter-spacing:.25em;padding:5px 14px;border-radius:4px;box-shadow:0 0 18px rgba(232,35,26,.8);animation:blink 1.2s steps(2) infinite}
+.onair::before{content:"";width:10px;height:10px;border-radius:50%;background:#fff}
+.tv-body{padding:34px 26px 0;text-align:center}
+.tv-ch{font-size:14px;color:#ffb4ae;letter-spacing:.15em}
+.tv-title{font-family:var(--mincho);font-weight:800;font-size:clamp(28px,6.6vw,50px);line-height:1.35;margin:12px 0 18px}
+.tv-title em{font-style:normal;color:var(--or)}
+.tv-text{max-width:34em;margin:0 auto;font-size:16px;line-height:2.1;color:#e6e1d6;text-align:left}
+.tv-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#3a1010;border:2px solid #3a1010;margin:34px 0 0}
+.tv-stats div{background:#0b0303;padding:20px 8px}
+.tv-stats b{display:block;font-family:var(--mincho);font-weight:800;font-size:clamp(24px,6vw,44px);color:#fff;line-height:1.2}
+.tv-stats b small{font-size:.5em;margin-left:2px}
+.tv-stats span{display:block;font-size:12px;color:var(--dim);margin-top:8px;line-height:1.6}
+.tv-link{display:inline-block;margin-top:30px;border:2px solid var(--or);color:var(--or);text-decoration:none;font-weight:700;padding:12px 22px;transition:.2s}
+.tv-link:hover{background:var(--or);color:var(--bk)}
+.tv-src{font-size:11px;color:#6d6a64;margin-top:14px}
 
 /* 写真バンド */
 .band{position:relative;height:clamp(300px,62vw,560px);overflow:hidden;border-top:2px solid var(--or);border-bottom:2px solid var(--or);margin:0}
@@ -328,7 +353,7 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px 0 0}
 <section id="wake">
   <div class="wrap reveal">
     <div class="card"><div class="ep">EPISODE 02 ／ RARITY</div><h2>希少の<br><em>理由。</em></h2></div>
-    <p class="lead" style="margin-bottom:24px">お届けするのは、規格を満たした正規品です。それでも手に入りにくいのには、理由があります。</p>
+    <p class="lead" style="margin-bottom:36px">お届けするのは、規格を満たした正規品です。それでも手に入りにくいのには、理由があります。</p>
     <div class="wake">
       <div class="box">
         <h3>なぜ希少なのか</h3>
@@ -406,19 +431,30 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px 0 0}
 
 <section id="media">
   <div class="wrap reveal">
-    <div class="card"><div class="ep">EPISODE 05 ／ ON AIR</div><h2>テレビが<br><em>密着した畑。</em></h2></div>
-    <div class="box">
-      <h3>HBC北海道放送「今日ドキッ！」で紹介されました</h3>
-      <p>2025年8月25日放送。アナウンサーが滝農園に1日弟子入りし、1番キビだけを採る朝どり収穫に密着。番組では「1本500円のブランドトウモロコシ」として紹介されました。</p>
-      <p style="margin-top:10px"><a href="https://www.hbc.co.jp/tv/doki/article.html?id=15530" target="_blank" rel="noopener" style="color:var(--or)">放送内容の記事を見る（HBC公式サイト）→</a></p>
+    <div class="card"><div class="ep">EPISODE 05 ／ ON AIR</div><h2>テレビが<br><em>密着した畑</em></h2></div>
+    <div class="tv">
+      <div class="tv-bar"><span class="onair">ON AIR</span><span>2025.08.25 OA</span></div>
+      <div class="tv-body">
+        <div class="tv-ch">HBC北海道放送「今日ドキッ！」</div>
+        <div class="tv-title">テレビが1日密着した<br><em>ブランドトウモロコシ</em></div>
+        <p class="tv-text">アナウンサーが滝農園に1日弟子入り。夜明けの畑で、1本の茎から1番キビだけを採る朝どり収穫に密着しました。とれたてを生のままかじる場面も放送されています。</p>
+        <div class="tv-stats">
+          <div><b>500<small>円</small></b><span>番組で紹介された<br>1本あたりの価格</span></div>
+          <div><b>15<small>万本</small></b><span>多い年の<br>年間販売本数</span></div>
+          <div><b>130<small>年</small></b><span>家族で続く<br>農園の歴史</span></div>
+        </div>
+        <a class="tv-link" href="https://www.hbc.co.jp/tv/doki/article.html?id=15530" target="_blank" rel="noopener">放送内容の記事を見る（HBC公式サイト）→</a>
+        <p class="tv-src">数値は番組放送時（2025年8月25日）の紹介内容によります</p>
+      </div>
     </div>
+  </div>
   </div>
 </section>
 
 <section id="ops">
   <div class="wrap reveal">
     <div class="card"><div class="ep">EPISODE 06 ／ OPERATIONS</div><h2>生食作戦、<br><em>全5種。</em></h2></div>
-    <p class="lead" style="margin-bottom:24px">加熱は不要。すべて「生」で完結する、5つの食べ方です。</p>
+    <p class="lead" style="margin-bottom:36px">加熱は不要。すべて「生」で完結する、5つの食べ方です。</p>
     <div class="ops">
       <div class="op"><span class="lv">LV.1</span><div class="fig"><svg viewBox="0 0 320 170" role="img" aria-label="TARGET: RAW BITEの作戦図"><rect width="320" height="170" fill="url(#grid)"/><text x="10" y="16" fill="#39ff6a" font-family="Oswald,sans-serif" font-size="9" letter-spacing="2">TARGET: RAW BITE</text><text x="310" y="16" text-anchor="end" fill="#e8231a" font-family="Oswald,sans-serif" font-size="9" letter-spacing="2" class="blink">LOCK ON</text><path d="M6 24V6H24M296 6H314V24M314 146V164H296M24 164H6V146" fill="none" stroke="#39ff6a" stroke-width="1.2"/><rect x="58" y="62" width="200" height="46" rx="23" fill="url(#kern)" stroke="#39ff6a" stroke-width="1.6"/><path d="M258 85 C278 70 296 62 312 58 M258 85 C280 88 298 96 312 104 M258 85 C282 80 300 82 312 84" fill="none" stroke="#39ff6a" stroke-width="1.2" opacity=".7"/><path d="M118 62 a18 12 0 0 0 36 0 a18 12 0 0 0 36 0" fill="#050b06" stroke="#ff6a00" stroke-width="2"/><g class="pulse"><circle cx="154" cy="66" r="22" fill="none" stroke="#e8231a" stroke-width="1.4"/><path d="M154 36V52M154 80V96M124 66H140M168 66H184" stroke="#e8231a" stroke-width="1.4"/></g><text x="10" y="156" fill="#ff6a00" font-family="Oswald,sans-serif" font-size="11" letter-spacing="2">NO HEAT / NO SALT / NO BUTTER</text></svg></div><h3>丸かじり</h3><p>皮とひげを取ったら、そのまま横からかぶりつく。最初のひと口は、何もつけずにどうぞ。</p></div>
       <div class="op"><span class="lv">LV.2</span><div class="fig"><svg viewBox="0 0 320 170" role="img" aria-label="ROW SCAN 01/14の作戦図"><rect width="320" height="170" fill="url(#grid)"/><text x="10" y="16" fill="#39ff6a" font-family="Oswald,sans-serif" font-size="9" letter-spacing="2">ROW SCAN 01/14</text><text x="310" y="16" text-anchor="end" fill="#39ff6a" font-family="Oswald,sans-serif" font-size="9" letter-spacing="2" class="blink">SCANNING</text><path d="M6 24V6H24M296 6H314V24M314 146V164H296M24 164H6V146" fill="none" stroke="#39ff6a" stroke-width="1.2"/><rect x="58" y="62" width="200" height="46" rx="23" fill="url(#kern)" stroke="#39ff6a" stroke-width="1.6"/><path d="M258 85 C278 70 296 62 312 58 M258 85 C280 88 298 96 312 104 M258 85 C282 80 300 82 312 84" fill="none" stroke="#39ff6a" stroke-width="1.2" opacity=".7"/><rect x="72" y="80" width="172" height="10" fill="#ff6a00" opacity=".35"/><g class="slide"><path d="M70 72 L86 85 L70 98 Z" fill="#ff6a00"/><path d="M60 85H70" stroke="#ff6a00" stroke-width="2"/></g><path d="M72 124H244" stroke="#39ff6a" stroke-width="1" stroke-dasharray="4 4"/><path d="M238 119L246 124L238 129" fill="none" stroke="#39ff6a"/><text x="10" y="156" fill="#39ff6a" font-family="Oswald,sans-serif" font-size="11" letter-spacing="2">FRONT TEETH / ONE ROW / KEEP THE JUICE</text></svg></div><h3>一列ずつ、歯でしごく</h3><p>粒の列に沿って前歯を当て、一列ずつ削るように食べる。果汁を逃がさない食べ方です。</p></div>
