@@ -611,7 +611,7 @@ form.zip.addEventListener("input", () => {
   const z = form.zip.value.replace(/[^0-9]/g, "");
   if (z.length !== 7) return;
   const cb = "zc" + Date.now(), sc = document.createElement("script");
-  window[cb] = d => { const a = d && d.results && d.results[0]; if (a) { form.pref.value = a.address1; if (!form.address.value) form.address.value = a.address2 + a.address3; } delete window[cb]; sc.remove(); };
+  window[cb] = d => { const a = d && d.results && d.results[0]; if (a && a.address1 === "沖縄県") { form.pref.value = ""; show("申し訳ありません。沖縄県・離島へはお届けできません。", true); } else if (a) { msg.style.display = "none"; form.pref.value = a.address1; if (!form.address.value) form.address.value = a.address2 + a.address3; } delete window[cb]; sc.remove(); };
   sc.src = `https://zipcloud.ibsnet.co.jp/api/search?zipcode=${z}&callback=${cb}`; document.body.appendChild(sc);
 });
 function show(text, err) { msg.textContent = text; msg.className = "form-msg" + (err ? " err" : ""); msg.style.display = "block"; }
