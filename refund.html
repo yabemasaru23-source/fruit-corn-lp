@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>返金申請フォーム 滝農園 フルーツコーン味来</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&family=Oswald:wght@500;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bk:#0a0a0a;--ink:#f4f1ea;--dim:#9a968c;--or:#ff6a00;--red:#e8231a;--gr:#39ff6a;--line:#2a2a2a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bk);color:var(--ink);font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;font-size:16px;line-height:2;letter-spacing:.03em}
+.tape{height:12px;background:repeating-linear-gradient(-45deg,var(--red) 0 16px,var(--bk) 16px 32px)}
+.wrap{max-width:760px;margin:0 auto;padding:56px 16px 90px}
+.ep{font-family:"Oswald",sans-serif;color:var(--red);letter-spacing:.3em;font-size:12px}
+h1{font-family:"Shippori Mincho B1",serif;font-weight:800;font-size:clamp(30px,7vw,46px);line-height:1.35;margin:8px 0 18px}
+h2{font-family:"Shippori Mincho B1",serif;font-size:22px;margin:44px 0 14px}
+.lead{color:#e6e1d6}
+.steps{list-style:none;counter-reset:st;margin-top:8px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;border:1px solid #5a1410;background:#120404;padding:16px 18px;margin-top:10px;line-height:1.8}
+.steps li::before{content:"0" counter(st);font-family:"Oswald",sans-serif;font-weight:700;color:var(--bk);background:var(--red);padding:2px 8px;font-size:14px}
+.steps small{display:block;color:#c9a5a2;font-size:13px;margin-top:4px}
+form{display:grid;gap:26px;margin-top:10px}
+label{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
+.req{display:inline-block;background:var(--red);color:#fff;font-size:11px;padding:1px 6px;margin-left:8px;vertical-align:2px}
+input[type=text],input[type=email],input[type=date],textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#111;border:1px solid #3a3a3a;padding:12px 14px;border-radius:0}
+input:focus,textarea:focus{outline:none;border-color:var(--or);box-shadow:0 0 0 3px rgba(255,106,0,.25)}
+textarea{line-height:1.9}
+.hint{font-size:12.5px;color:var(--dim);margin-top:4px;line-height:1.8}
+.count{font-family:"Oswald",sans-serif;font-size:13px;text-align:right;color:var(--red)}
+.count.ok{color:var(--gr)}
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.photos img{width:100%;aspect-ratio:1;object-fit:cover;border:1px solid #3a3a3a}
+.file{display:block;border:2px dashed #4a4a4a;padding:18px;text-align:center;cursor:pointer;color:#d6d3cc}
+.file:hover{border-color:var(--or)}
+.file input{display:none}
+.agree{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--red);padding:14px 16px;font-size:14.5px;line-height:1.8}
+.agree input{width:20px;height:20px;margin-top:4px;flex:none;accent-color:var(--red)}
+button{display:block;width:100%;max-width:560px;margin:8px auto 0;border:0;background:var(--red);color:#fff;font:inherit;font-weight:700;font-size:19px;padding:18px 16px;cursor:pointer}
+button:disabled{background:#444;color:#999;cursor:default}
+.msg{display:none;padding:16px;border:2px solid var(--red)}
+.done{display:none;text-align:center;border:2px solid var(--gr);padding:34px 20px;margin-top:20px}
+.done h2{margin:0 0 10px;color:var(--gr)}
+a{color:var(--or)}
+.back{display:inline-block;margin-top:40px}
+</style>
+</head>
+<body>
+<div class="tape"></div>
+<main class="wrap">
+  <div class="ep">REFUND REQUEST</div>
+  <h1>返金申請フォーム</h1>
+  <p class="lead">フルーツコーン「味来」を食べて美味しくなかった方は、こちらからお申し込みください。いただいた声は、来年の畑づくりに必ず活かします。</p>
+
+  <h2>返金までの流れ</h2>
+  <ol class="steps">
+    <li><span><b>到着から3日以内に、このフォームから申請</b><small>到着日はヤマト運輸の配達完了日で確認します</small></span></li>
+    <li><span><b>滝農園から返送先をメールでご案内</b><small>申請内容を確認のうえ、ご連絡します</small></span></li>
+    <li><span><b>商品をご返送ください</b><small>返送の送料はお客様のご負担です（着払い不可）</small></span></li>
+    <li><span><b>返送品の到着を確認後、ご利用のカードへ返金</b><small>返金額は商品代4,000円です。お届け時の送料1,500円は返金できません。カード会社の処理により、反映まで数日〜2週間ほどかかる場合があります</small></span></li>
+  </ol>
+
+  <h2>申請内容</h2>
+  <form id="rf" novalidate>
+    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+    <div><label for="r-order">注文番号<span class="req">必須</span></label><input type="text" id="r-order" name="orderId" placeholder="MR1005-AB12" autocomplete="off" required><div class="hint">ご注文時のメール（件名「お申し込み受付」）に記載の番号です</div></div>
+    <div><label for="r-name">お名前<span class="req">必須</span></label><input type="text" id="r-name" name="name" autocomplete="name" required></div>
+    <div><label for="r-email">メールアドレス<span class="req">必須</span></label><input type="email" id="r-email" name="email" autocomplete="email" required><div class="hint">ご注文時と同じメールアドレスをご入力ください</div></div>
+    <div><label for="r-arrived">商品が届いた日<span class="req">必須</span></label><input type="date" id="r-arrived" name="arrived" required></div>
+    <div>
+      <label>食べた様子の写真<span class="req">必須</span></label>
+      <label class="file">📷 写真を選ぶ（1〜3枚）<input type="file" id="r-photos" accept="image/*" multiple></label>
+      <div class="hint">召し上がった後のとうもろこしが写っている写真をお願いします</div>
+      <div class="photos" id="preview"></div>
+    </div>
+    <div><label for="r-reason">美味しくなかった理由<span class="req">必須</span></label><textarea id="r-reason" name="reason" rows="8" placeholder="甘さ、食感、香り、皮のかたさなど、どこがどう美味しくなかったかを具体的にお書きください" required></textarea><div class="count" id="c-reason">0 / 300文字以上</div></div>
+    <div><label for="r-idea">改善案<span class="req">必須</span></label><textarea id="r-idea" name="idea" rows="5" placeholder="どうすれば美味しくなると思うか、ご意見をお聞かせください" required></textarea></div>
+    <label class="agree"><input type="checkbox" id="r-agree" required><span>商品の返送が必要であること（返送料はお客様負担・着払い不可）、返金は商品代4,000円のみでお届け時の送料は返金されないことに同意します</span></label>
+    <button type="submit" id="r-send">返金を申請する</button>
+    <div class="msg" id="r-msg" role="status"></div>
+  </form>
+
+  <div class="done" id="r-done">
+    <h2>申請を受け付けました</h2>
+    <p>確認メールをお送りしました。内容を確認のうえ、滝農園より返送先をご案内します。</p>
+  </div>
+
+  <p class="hint" style="margin-top:30px">ご不明な点は <a href="mailto:info@takifarm.net">info@takifarm.net</a> までご連絡ください。詳しい条件は<a href="tokushoho.html">特定商取引法に基づく表記</a>をご覧ください。</p>
+  <a class="back" href="./">← 販売ページへ戻る</a>
+</main>
+<script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbwrQG4KlG-ukgRYz36edoEZPy060ux9jGeWbcIsUjhBB8aangfhoZIh-GAZs9rDqPJhVg/exec";
+const f = document.getElementById("rf"), msg = document.getElementById("r-msg"), reason = document.getElementById("r-reason");
+const show = t => { msg.textContent = t; msg.style.display = "block"; };
+const len = s => [...s.replace(/\s/g, "")].length;
+reason.addEventListener("input", () => {
+  const n = len(reason.value), c = document.getElementById("c-reason");
+  c.textContent = n + " / 300文字以上"; c.classList.toggle("ok", n >= 300);
+});
+
+// 写真はスマホ側で長辺1600pxのJPEGに縮めてから送る
+let photos = [];
+function shrink(file) {
+  return new Promise((res, rej) => {
+    const img = new Image(), url = URL.createObjectURL(file);
+    img.onload = () => {
+      const s = Math.min(1, 1600 / Math.max(img.width, img.height)), c = document.createElement("canvas");
+      c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+      res(c.toDataURL("image/jpeg", 0.8));
+    };
+    img.onerror = rej; img.src = url;
+  });
+}
+document.getElementById("r-photos").addEventListener("change", async e => {
+  const files = [...e.target.files].slice(0, 3);
+  try { photos = await Promise.all(files.map(shrink)); }
+  catch (_) { photos = []; show("写真を読み込めませんでした。別の写真でお試しください。"); }
+  document.getElementById("preview").innerHTML = photos.map(p => `<img src="${p}" alt="選んだ写真">`).join("");
+});
+
+f.addEventListener("submit", async e => {
+  e.preventDefault(); msg.style.display = "none";
+  const order = f.orderId.value.trim().toUpperCase();
+  if (!/^MR\d{4}-[A-Z0-9]{3,4}$/.test(order)) return show("注文番号をご確認ください（例：MR1005-AB12）");
+  if (!f.name.value.trim()) return show("お名前をご入力ください");
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.value)) return show("メールアドレスをご確認ください");
+  if (!f.arrived.value) return show("商品が届いた日をご入力ください");
+  if (!photos.length) return show("食べた様子の写真を1枚以上お選びください");
+  if (len(reason.value) < 300) return show("美味しくなかった理由は300文字以上でお書きください（現在 " + len(reason.value) + " 文字）");
+  if (!f.idea.value.trim()) return show("改善案をご入力ください");
+  if (!document.getElementById("r-agree").checked) return show("返金の条件への同意にチェックをお願いします");
+  const btn = document.getElementById("r-send"); btn.disabled = true; btn.textContent = "送信中…";
+  const data = new URLSearchParams({ type: "refund", website: f.website.value, orderId: order, name: f.name.value, email: f.email.value, arrived: f.arrived.value, reason: reason.value, idea: f.idea.value });
+  photos.forEach((p, i) => data.set("photo" + (i + 1), p.split(",")[1]));
+  try {
+    await fetch(ENDPOINT, { method: "POST", mode: "no-cors", body: data });
+    f.style.display = "none"; document.getElementById("r-done").style.display = "block";
+    document.getElementById("r-done").scrollIntoView({ block: "center" });
+  } catch (_) {
+    btn.disabled = false; btn.textContent = "返金を申請する";
+    show("送信できませんでした。通信状況をご確認のうえ、もう一度お試しください。");
+  }
+});
+</script>
+</body>
+</html>
