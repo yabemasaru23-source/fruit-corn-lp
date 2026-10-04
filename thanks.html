@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ご注文受付完了 滝農園 フルーツコーン味来</title>
+<title>ご注文完了 滝農園 フルーツコーン味来</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,22 +44,23 @@ a{color:var(--or)}
 <main class="wrap">
   <div class="status">ORDER CONFIRMED</div>
   <div class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#39ff6a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-  <h1>ご注文を<br><em>受け付けました</em></h1>
-  <p class="lead">ご注文ありがとうございます<br>確認メールをお送りしましたのでご確認ください</p>
+  <h1>ご注文が<br><em>完了しました</em></h1>
+  <p class="lead">お支払いありがとうございました<br>確認メールをお送りしましたのでご確認ください</p>
 
   <section class="summary" id="summary" hidden>
     <h2>YOUR ORDER</h2>
     <dl>
       <dt>お名前</dt><dd id="o-name"></dd>
-      <dt>商品</dt><dd id="o-item"></dd>
-      <dt>合計（税込）</dt><dd class="total" id="o-total"></dd>
+      <dt>注文番号</dt><dd id="o-id"></dd>
+      <dt>商品</dt><dd>フルーツコーン「味来」正規品 10本入り × 1箱</dd>
+      <dt>合計（税込）</dt><dd class="total">¥5,500</dd>
     </dl>
   </section>
 
   <ol class="steps">
     <li><span><b>確認メールをご確認ください</b><small>ご入力のメールアドレスに「【ご注文受付】フルーツコーン「味来」」という件名で届きます。届かない場合は迷惑メールフォルダもご確認ください。</small></span></li>
-    <li><span><b>PayPayでお支払いください</b><small>お支払い方法は、追ってメールでご案内します。</small></span></li>
-    <li><span><b>収穫にあわせて順次発送します</b><small>お支払いの確認後、ヤマト運輸クール便でお届けします。お届けの日時・時間帯は指定できません。</small></span></li>
+    <li><span><b>カード決済の領収メールも届きます</b><small>Stripeから決済完了のメールが別に届きます。</small></span></li>
+    <li><span><b>収穫にあわせて順次発送します</b><small>ヤマト運輸クール便でお届けします。お届けの日時・時間帯は指定できません。</small></span></li>
   </ol>
 
   <p class="contact">ご不明な点は <a href="mailto:info@takifarm.net">info@takifarm.net</a> までご連絡ください</p>
@@ -71,8 +72,7 @@ try {
   const o = JSON.parse(sessionStorage.getItem("lastOrder") || "null");
   if (o) {
     document.getElementById("o-name").textContent = o.name + " 様";
-    document.getElementById("o-item").textContent = `フルーツコーン「味来」正規品 10本入り × ${o.qty}箱`;
-    document.getElementById("o-total").textContent = o.total;
+    document.getElementById("o-id").textContent = o.id || "";
     document.getElementById("summary").hidden = false;
     sessionStorage.removeItem("lastOrder");
   }
