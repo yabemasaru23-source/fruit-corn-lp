@@ -562,6 +562,7 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px auto 0}
         <div class="total"><span>合計（税込）</span><span id="s-total">¥5,500</span></div>
       </div>
       <p class="note" style="margin:0">不味ければ商品代4,000円を返金します（到着から3日以内・写真1枚とひとことの理由でお申し込み・返送不要・お届け時の送料は返金不可。詳しくは<a href="tokushoho.html" style="color:var(--or)">特定商取引法に基づく表記</a>）。ご入力いただいた情報の取り扱いは<a href="privacy.html" style="color:var(--or)">プライバシーポリシー</a>をご覧ください。</p>
+      <p class="notice" style="margin:0;text-align:center;font-weight:700">⚠ このボタンのあと、カード決済の画面に移ります<small style="display:block;font-weight:400">決済画面でお支払いが完了した時点で、ご注文が確定します</small></p>
       <p class="note" style="margin:0;text-align:center">🔒 お支払いはStripe社の決済画面（buy.stripe.com）で行います。カード番号は当サイトには届かず、保存もしません。</p>
       <button type="submit" class="cta" data-order-submit><span class="en">GO TO PAYMENT</span><span>この内容で決済へ進む</span></button>
       <div class="form-msg" id="formMsg" role="status"></div>
@@ -629,7 +630,10 @@ form.addEventListener("submit", async e => {
   const now = new Date(), id = "MR" + String(now.getMonth() + 1).padStart(2, "0") + String(now.getDate()).padStart(2, "0") + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
   const data = new URLSearchParams(new FormData(form)); data.set("orderId", id);
   try {
-    await fetch(FORM_ENDPOINT, { method: "POST", mode: "no-cors", body: data });
+    // 記録はページ移動後も続く（keepalive）ので、待つのは最大1.5秒だけにしてすぐ決済画面へ移る
+    const sent = fetch(FORM_ENDPOINT, { method: "POST", mode: "no-cors", body: data, keepalive: true });
+    label.textContent = "決済画面へ移動しています…";
+    await Promise.race([sent, new Promise(r => setTimeout(r, 1500))]);
     try { sessionStorage.setItem("lastOrder", JSON.stringify({ name: form.name.value, id })); } catch (_) {}
     location.href = STRIPE_URL + "?client_reference_id=" + id;
   } catch (_) {
