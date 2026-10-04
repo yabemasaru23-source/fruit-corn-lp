@@ -602,8 +602,8 @@ button.cta{cursor:pointer;font-family:inherit;margin:8px auto 0}
 <script>
 // 注文の送信先：Apps Script をウェブアプリとして公開したURLを入れる
 const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbwrQG4KlG-ukgRYz36edoEZPy060ux9jGeWbcIsUjhBB8aangfhoZIh-GAZs9rDqPJhVg/exec";
-// 決済ページ（Stripe Payment Link：商品4,000円＋送料1,500円）
-const STRIPE_URL = "https://buy.stripe.com/4gM3cudvDdpgePJ2yXdMI01";
+// 決済ページ（Stripe Payment Link：送料込み5,500円・住所と電話はLPのフォームで取得）
+const STRIPE_URL = "https://buy.stripe.com/6oU28q9fnfxoaztc9xdMI02";
 const form = document.getElementById("orderForm"), msg = document.getElementById("formMsg");
 const yen = n => "¥" + n.toLocaleString();
 // 郵便番号から住所を自動入力（zipcloud）
