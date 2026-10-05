@@ -611,6 +611,7 @@ const STRIPE_URL = "https://buy.stripe.com/6oU28q9fnfxoaztc9xdMI02";
 const form = document.getElementById("orderForm"), msg = document.getElementById("formMsg");
 const yen = n => "¥" + n.toLocaleString();
 // 郵便番号から住所を自動入力（zipcloud）
+form.addEventListener("focusin", () => { if (!form.dataset.started && window.tfLog) { form.dataset.started = 1; tfLog("form_start"); } });
 form.zip.addEventListener("input", () => {
   const z = form.zip.value.replace(/[^0-9]/g, "");
   if (z.length !== 7) return;
@@ -635,6 +636,7 @@ form.addEventListener("submit", async e => {
     label.textContent = "決済画面へ移動しています…";
     await Promise.race([sent, new Promise(r => setTimeout(r, 1500))]);
     try { sessionStorage.setItem("lastOrder", JSON.stringify({ name: form.name.value, id })); } catch (_) {}
+    if (window.tfLog) tfLog("submit", id);
     location.href = STRIPE_URL + "?client_reference_id=" + id;
   } catch (_) {
     btn.disabled = false; label.textContent = "この内容で決済へ進む";
@@ -679,6 +681,23 @@ function tick() {
 
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }), { threshold: .12 });
 document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+<script>
+// アクセス記録：ページ・時刻・参照元・端末の種類だけをシート「アクセス」に送る（名前やIPは送らない）
+(function () {
+  var E = "https://script.google.com/macros/s/AKfycbwrQG4KlG-ukgRYz36edoEZPy060ux9jGeWbcIsUjhBB8aangfhoZIh-GAZs9rDqPJhVg/exec", v = "";
+  try { v = localStorage.getItem("tf_vid") || ""; if (!v) { v = Math.random().toString(36).slice(2, 10); localStorage.setItem("tf_vid", v); } } catch (_) {}
+  window.tfLog = function (ev, oid) {
+    try {
+      var q = new URLSearchParams(location.search);
+      var d = new URLSearchParams({ type: "log", page: location.pathname, event: ev, ref: (document.referrer || "").split("?")[0],
+        us: q.get("utm_source") || "", um: q.get("utm_medium") || "", uc: q.get("utm_campaign") || "",
+        dev: /iPhone|Android|Mobile/.test(navigator.userAgent) ? "スマホ" : "PC", vid: v, oid: oid || "" });
+      if (!(navigator.sendBeacon && navigator.sendBeacon(E, d))) fetch(E, { method: "POST", mode: "no-cors", body: d, keepalive: true });
+    } catch (_) {}
+  };
+  if (!/[?&]notrack/.test(location.search)) { tfLog("view"); if (window.__tfPaid) tfLog("paid", window.__tfPaid); }
+})();
 </script>
 </body>
 </html>

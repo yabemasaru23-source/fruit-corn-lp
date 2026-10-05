@@ -41,6 +41,7 @@ a{color:var(--or)}
     <li><strong>ご注文時：</strong>お名前、ふりがな、郵便番号、ご住所、電話番号、メールアドレス、備考</li>
     <li><strong>返金のお申し込み時：</strong>注文番号、お名前、メールアドレス、商品の到着日、写真、美味しくなかった理由、改善案</li>
     <li><strong>お問い合わせ時：</strong>メールアドレス、お問い合わせの内容</li>
+    <li><strong>サイトをご覧になったとき：</strong>閲覧したページ、日時、参照元（どのサイトから来たか）、スマホ／PCの別、ブラウザに保存するランダムな番号（お名前やIPアドレスは記録しません）</li>
   </ul>
   <p>クレジットカードの情報は、決済代行会社 Stripe 社の決済画面で直接入力いただくもので、当店には届かず、保存もしません。</p>
 
@@ -51,6 +52,7 @@ a{color:var(--or)}
     <li>返金のお申し込みへの対応</li>
     <li>お問い合わせへの回答</li>
     <li>いただいたご意見を、個人が分からない形にしたうえで、来年以降の栽培・販売の改善に活かすこと</li>
+    <li>サイトの閲覧状況を集計し、分かりやすいページづくりに活かすこと</li>
   </ul>
   <p>上記以外の目的には利用しません。広告メールの配信には使いません。</p>
 
@@ -80,5 +82,22 @@ a{color:var(--or)}
   <p class="date">制定日：2026年10月5日</p>
   <a class="back" href="./">← フルーツコーン「味来」販売ページへ戻る</a>
 </main>
+<script>
+// アクセス記録：ページ・時刻・参照元・端末の種類だけをシート「アクセス」に送る（名前やIPは送らない）
+(function () {
+  var E = "https://script.google.com/macros/s/AKfycbwrQG4KlG-ukgRYz36edoEZPy060ux9jGeWbcIsUjhBB8aangfhoZIh-GAZs9rDqPJhVg/exec", v = "";
+  try { v = localStorage.getItem("tf_vid") || ""; if (!v) { v = Math.random().toString(36).slice(2, 10); localStorage.setItem("tf_vid", v); } } catch (_) {}
+  window.tfLog = function (ev, oid) {
+    try {
+      var q = new URLSearchParams(location.search);
+      var d = new URLSearchParams({ type: "log", page: location.pathname, event: ev, ref: (document.referrer || "").split("?")[0],
+        us: q.get("utm_source") || "", um: q.get("utm_medium") || "", uc: q.get("utm_campaign") || "",
+        dev: /iPhone|Android|Mobile/.test(navigator.userAgent) ? "スマホ" : "PC", vid: v, oid: oid || "" });
+      if (!(navigator.sendBeacon && navigator.sendBeacon(E, d))) fetch(E, { method: "POST", mode: "no-cors", body: d, keepalive: true });
+    } catch (_) {}
+  };
+  if (!/[?&]notrack/.test(location.search)) { tfLog("view"); if (window.__tfPaid) tfLog("paid", window.__tfPaid); }
+})();
+</script>
 </body>
 </html>
